@@ -1,0 +1,34 @@
+body{
+    background-color: pink;
+}
+h1{
+    display: flex;
+    justify-content: center;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+input, button, select{
+    margin-right: .5rem;
+    border-radius: 1rem;
+}
+
+button{
+    color: hotpink;
+}
+
+#container{
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+p, h3{
+    display: flex;
+    justify-content: center;
+}
