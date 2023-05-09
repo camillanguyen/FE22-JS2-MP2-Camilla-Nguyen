@@ -16,33 +16,39 @@ class Tamagotchi {
     }
 
     decreaseHunger() {
-        this.#hunger = setInterval(() => {
-        }, getRandomInt(1000, 6000))
+        setInterval(() => {
+            if (this.hunger > 0) {
+                this.hunger--;
+            }
+        }, this.getRandomInt(1000, 6000));
     }
 
     decreaseHappiness() {
-        this.#happiness = setInterval(()=>{
-        },getRandomInt(1000, 6000));
+        setInterval(() => {
+            if (this.happiness > 0) {
+                this.happiness--;
+            }
+        }, this.getRandomInt(1000, 6000));
     }
-    
 
-    getHunger () {
+
+    getHunger() {
         return this.#hunger;
     }
 
-    getHappiness () {
+    getHappiness() {
         return this.#happiness;
     }
 
-    setHunger (updatedHunger) {
-        return (this.#hunger = updatedHunger);
+    setHunger(updatedHunger) {
+        this.#hunger = updatedHunger;
     }
 
-    setHappiness (updatedHappiness) {
-        return (this.#happiness = updatedHappiness);
+    setHappiness(updatedHappiness) {
+        this.#happiness = updatedHappiness;
     }
 
-    
+
     createTamagotchi() {
         const input = document.querySelector('input').value;
         const select = document.querySelector('select');
@@ -58,8 +64,8 @@ class Tamagotchi {
 
 
         const playButton = document.createElement('button');
-        playButton.innerText = 'Play'; 
-        
+        playButton.innerText = 'Play';
+
         const feedButton = document.createElement('button');
         feedButton.innerText = 'Feed';
 
@@ -67,13 +73,13 @@ class Tamagotchi {
 
         let tamagotchiName = document.createElement('h3');
 
-        let tamagotchi = new Tamagotchi (input, animal);
+        let tamagotchi = new Tamagotchi(input, animal);
         let hunger = tamagotchi.getHunger();
         let happiness = tamagotchi.getHappiness();
 
         feedButton.addEventListener('click', (event) => {
             event.preventDefault();
-            if(hunger >= 10){
+            if (hunger >= 10) {
                 const maxHunger = document.createElement('p');
 
                 maxHunger.innerText = 'Your Tamagotchi is full';
@@ -81,19 +87,19 @@ class Tamagotchi {
                 tamagotchiContainer.append(maxHunger);
                 container.append(tamagotchiContainer);
 
-                setTimeout(function(){
+                setTimeout(function () {
                     maxHunger.remove();
-        
-                },1000);
+
+                }, 1000);
             }
-            else{
+            else {
                 hunger++
             }
         })
 
         playButton.addEventListener('click', (event) => {
             event.preventDefault();
-            if(happiness >= 10){
+            if (happiness >= 10) {
                 const maxHappiness = document.createElement('p');
 
                 maxHappiness.innerText = 'Your Tamagotchi is on cloud 9';
@@ -102,13 +108,13 @@ class Tamagotchi {
                 tamagotchiContainer.append(maxHappiness);
                 container.append(tamagotchiContainer);
 
-                setTimeout(function(){
+                setTimeout(function () {
                     maxHappiness.remove();
-        
-                },1000);
+
+                }, 1000);
 
             }
-            else{
+            else {
                 happiness++
             }
         })
@@ -118,7 +124,7 @@ class Tamagotchi {
         let interval = this.getRandomInt(1000, 6000);
         let hungerInterval = setInterval(function () {
             hungerP.innerHTML = `Hunger: ${hunger--}`;
-            if(hunger < 0){
+            if (hunger < 0) {
                 clearInterval(hungerInterval);
                 clearInterval(happinessInterval)
                 const dead = document.createElement('p');
@@ -135,7 +141,7 @@ class Tamagotchi {
         interval = this.getRandomInt(1000, 3000);
         let happinessInterval = setInterval(function () {
             happinessP.innerHTML = `Happiness: ${happiness--}`;
-            if(happiness < 0){
+            if (happiness < 0) {
                 clearInterval(happinessInterval);
                 clearInterval(hungerInterval);
                 const dead = document.createElement('p');
@@ -151,7 +157,7 @@ class Tamagotchi {
 
 
 
-       if(animal == 'Bear'){
+        if (animal == 'Bear') {
 
             tamagotchiName.innerText = `${input} the ${animal}`;
             const image = document.createElement('img');
@@ -171,8 +177,8 @@ class Tamagotchi {
             container.append(tamagotchiContainer);
 
         }
-        else{
-            tamagotchiName.innerText = `${input} the ${animal}`;     
+        else {
+            tamagotchiName.innerText = `${input} the ${animal}`;
 
             const image = document.createElement('img');
             image.src = 'images/koala1.png'
